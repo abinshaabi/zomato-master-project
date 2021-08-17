@@ -16,6 +16,7 @@ import Auth from "./API/Auth";
 import Restaurant from "./API/Restaurant";
 import Food from "./API/Food"
 import Menu from "./API/Menu"
+import Order from "./API/Orders"
 
 //database connection
 import ConnectDB from "./database/connection"
@@ -42,6 +43,7 @@ zomato.use("/auth",Auth)
 zomato.use("/restaurant", Restaurant)
 zomato.use("/food", Food)
 zomato.use("/menu", Menu)
+zomato.use("/order", Order)
 
 
 
