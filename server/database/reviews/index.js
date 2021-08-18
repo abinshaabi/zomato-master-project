@@ -6,6 +6,8 @@ const ReviewSchema = new Mongoose.Schema({
     user: {type: Mongoose.Types.ObjectId, ref: "Users"},
     rating: {type: Number, required: true },
     reviewText: {type: String, required: true},
+    isRestaurantReview: Boolean,
+    isFoodReview: Boolean,
     photos: [
         {type: Mongoose.Types.ObjectId, ref: "Images"}
     ],
