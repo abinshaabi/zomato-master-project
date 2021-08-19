@@ -39,7 +39,7 @@ Body    none
 Access  Public
 Method  DELETE
 */
-Router.post("/delete/:_id", async (req, res) => {
+Router.delete("/delete/:_id", async (req, res) => {
     try {
         const { _id } = req.params;
 

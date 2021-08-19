@@ -18,6 +18,7 @@ import Food from "./API/Food"
 import Menu from "./API/Menu"
 import Order from "./API/Orders"
 import Reviews from "./API/Reviews"
+import User from "./API/User"
 
 
 //database connection
@@ -47,6 +48,7 @@ zomato.use("/food", Food)
 zomato.use("/menu", Menu)
 zomato.use("/order", Order)
 zomato.use("/reviews", Reviews)
+zomato.use("/user", User)
 
 
 zomato.get("/", (req,res) => res.json({ message : "setup success"}))
