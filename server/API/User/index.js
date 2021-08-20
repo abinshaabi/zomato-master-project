@@ -5,6 +5,10 @@ import passport from "passport";
 //database models
 import { UserModel } from "../../database/user";
 
+//validations
+import { ValidateUserId } from "../../validation/order";
+import { ValidateNewUpdatingUserData } from "../../validation/user";
+
 
 const Router =express.Router();
 
@@ -18,6 +22,8 @@ Method  GET
 */
 Router.get("/:_id", async (req, res) => {
     try {
+        await ValidateUserId(req.params);
+
         const { _id } = req.params;
 
         const getUser = await UserModel.findById(_id)
@@ -40,6 +46,9 @@ Method  PUT
 */
 Router.put("/:_id", async (req, res) => {
     try {
+        await ValidateUserId(req.params);
+        await ValidateNewUpdatingUserData(req.body);
+        
         const { _id } = req.params;
         const { userData } = req.body;
 

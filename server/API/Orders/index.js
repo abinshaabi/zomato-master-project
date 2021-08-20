@@ -5,6 +5,9 @@ import passport from "passport";
 //database models
 import { OrderModel } from "../../database/order";
 
+//validations
+import { ValidateOrderDetails, ValidateUserId } from "../../validation/order";
+
 
 const Router =express.Router();
 
@@ -16,8 +19,10 @@ Params  _id
 Access  Public
 Method  GET
 */
-Router.get("/:_id", async (req, res) => {
+Router.get("/:_id", passport.authenticate("jwt",{session: false}) ,async (req, res) => {
     try {
+        await ValidateUserId(req.params);
+
         const { _id } = req.params
         const getOrders = await OrderModel.findOne({user: _id})
 
@@ -40,6 +45,9 @@ Method  POST
 */
 Router.post("/new/:_id", async (req, res) => {
     try {
+        await ValidateUserId(req.params);
+        await ValidateOrderDetails(req.body);
+
         const { _id } = req.params
         const { orderDetails } = req.body
 
