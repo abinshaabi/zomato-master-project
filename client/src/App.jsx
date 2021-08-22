@@ -1,7 +1,7 @@
 //HOC
 import temp from "./Components/temp";
 
-//components
+//components 
 import HomeHOC from "./HOC/Home.HOC";
 
 

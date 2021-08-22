@@ -7,7 +7,7 @@ const OrderSchema = new Mongoose.Schema({
     },
     orderDetails: [
         {
-            food: {  type: Mongoose.Types.ObjectId, ref: "Users",},
+            food: {  type: Mongoose.Types.ObjectId, ref: "Users",required:true},
             quantity: { type: Number, required: true},
             paymode: { type: String, required: true},
             status: { type: String, default: "Placed" },

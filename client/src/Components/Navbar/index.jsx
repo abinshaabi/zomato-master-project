@@ -7,7 +7,7 @@ import { RiSearch2Line } from "react-icons/ri"
 const MobileNav = () => {
     return (
         
-        <div className=" p-3 flex w-full items-center justify-between shadow md:hidden ">
+        <div className=" p-3 flex w-full items-center justify-between shadow lg:hidden ">
             <div className="h-5 pl-3">
                 <img src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png" 
                 alt="zomato logo"
@@ -66,7 +66,8 @@ const MediumNav = () => {
 const LargeNav = () => {
     return (
         <>
-            <div className="p-3 hidden  lg:flex w-full mx-auto px-32  items-center justify-between gap-4 ">
+            
+            <div className="p-3 hidden  lg:flex w-full container px-20 mx-auto items-center justify-between gap-4 ">
                 <div className=" flex items-center gap-5 justify-start">
                     <div className="w-40">
                         <img src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png" 
@@ -109,7 +110,7 @@ const Navbar = () => {
         <>
            <nav className=" bg-white flex  w-full items-center">
                     <MobileNav />      
-                    <MediumNav />
+                    
                     <LargeNav />
                 
            </nav>
