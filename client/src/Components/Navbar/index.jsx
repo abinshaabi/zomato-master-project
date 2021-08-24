@@ -74,7 +74,7 @@ const LargeNav = () => {
                         alt="zomato logo"
                         className="w-full h-full cursor-pointer" />
                     </div>
-                    <div className="w-full bg-white shadow-md px-3 py-4 flex items-center gap-3 border border-gray-200 rounded-lg">
+                    <div className="w-full bg-white shadow-md px-2 py-4 flex items-center gap-3 border border-gray-200 rounded-lg">
                         <div className=" flex items-center gap-1 border-r-2 border-gray-300 pr-2 ">
                             <span className="text-zomato-300 w-6">
                                 <HiLocationMarker className="w-full h-full"/>
