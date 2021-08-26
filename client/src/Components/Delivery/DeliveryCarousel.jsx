@@ -39,11 +39,7 @@ const DeliveryCarousel = () => {
             "https://b.zmtcdn.com/data/homepage_dish_data/4/eb2ef145c0fcad44dbb4ed26aad1527d.png",
           title: "Rolls",
         },
-        {
-          image:
-            "https://b.zmtcdn.com/data/dish_photos/06a/af146087e76aed8c0baa90a84a6f206a.jpg",
-          title: "Sagu",
-        },
+        
       ];
 
     const settings = {
@@ -52,14 +48,29 @@ const DeliveryCarousel = () => {
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 1,
-      
       nextArrow: <NextArrow/>,
       prevArrow: <PrevArrow />,
+      responsive: [
+        {
+          breakpoint: 1279,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            arrows: true,
+            infinite: true,
+            speed: 500,
+            nextArrow: <NextArrow/>,
+            prevArrow: <PrevArrow />,
+          }
+        }
+      ],
+      
     }
 
     return (
         <>
-            <h1 className="text-xl lg:text-2xl mb-5 lg:mb-7 text-gray-800 font-semibold">Inspiration for your first order</h1>
+          <div className="lg:my-10">
+            <h1 className="text-xl font-semibold md:text-2xl lg:text-2xl mb-5 lg:mb-7 text-gray-800 ">Inspiration for your first order</h1>
             <div className="lg:hidden flex  gap-3 lg:gap-0 flex-wrap justify-between">
                 
                 {categories.map((food) => (
@@ -75,7 +86,7 @@ const DeliveryCarousel = () => {
                   ))}
                 </Slider>
             </div>
-        
+          </div>
         </>
     )
 }
