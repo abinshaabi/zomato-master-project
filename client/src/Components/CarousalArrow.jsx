@@ -4,7 +4,7 @@ export const NextArrow = (props) => {
     return (
         <div 
             className={props.className}
-            style={{ ...props.style, margin: "25px ",top: 75, backgroundColor: "#e23744" }}
+            style={{ ...props.style, backgroundColor: "#e23744" }}
             onClick={props.onClick}
         />
     )
@@ -12,6 +12,27 @@ export const NextArrow = (props) => {
 
 
 export const PrevArrow = (props) => {
+    return (
+        <div 
+            className={props.className}
+            style={{ ...props.style,backgroundColor: "#e23744"}}
+            onClick={props.onClick}
+        />
+    )
+}
+
+export const DelNextArrow = (props) => {
+    return (
+        <div 
+            className={props.className}
+            style={{ ...props.style, margin: "25px ",top: 75, backgroundColor: "#e23744" }}
+            onClick={props.onClick}
+        />
+    )
+}
+
+
+export const DelPrevArrow = (props) => {
     return (
         <div 
             className={props.className}

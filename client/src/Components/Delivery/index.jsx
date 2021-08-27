@@ -50,7 +50,7 @@ const Delivery = () => {
       <>
         <DeliveryCarousel />  
         <Brand />
-        <h1 className="text-2xl font-semibold mt-10 mb-2 md:mt-16 md:mb-6 md:text-3xl md:font-semibold">
+        <h1 className="text-2xl font-semibold mt-10 mb-2 md:mt-16 md:mb-6 md:text-3xl md:font-medium">
           Delivery Restaurants in Kochi
         </h1>
         <div className="flex justify-between flex-wrap">

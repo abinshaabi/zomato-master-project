@@ -3,7 +3,7 @@ import Slider from 'react-slick'
 
 //components
 import DeliveryCategory from './DeliveryCategory'
-import { NextArrow, PrevArrow } from '../CarousalArrow'
+import { DelNextArrow, DelPrevArrow } from '../CarousalArrow'
 
 
 const DeliveryCarousel = () => {
@@ -48,8 +48,8 @@ const DeliveryCarousel = () => {
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 1,
-      nextArrow: <NextArrow/>,
-      prevArrow: <PrevArrow />,
+      nextArrow: <DelNextArrow/>,
+      prevArrow: <DelPrevArrow />,
       responsive: [
         {
           breakpoint: 1279,
@@ -59,8 +59,8 @@ const DeliveryCarousel = () => {
             arrows: true,
             infinite: true,
             speed: 500,
-            nextArrow: <NextArrow/>,
-            prevArrow: <PrevArrow />,
+            nextArrow: <DelNextArrow/>,
+            prevArrow: <DelPrevArrow />,
           }
         }
       ],
