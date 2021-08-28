@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import Delivery from './Delivery';
 import Dining from './Dining';
 import Nightlife from './NightLife';
+import Nutrition from './Nutrition';
 
 const Master = () => {
     const { type } = useParams();
@@ -14,6 +15,8 @@ const Master = () => {
             {type==="delivery" && <Delivery />}
             {type==="dining" && <Dining />}
             {type==="night" && <Nightlife />}
+            {type==="nutri" && <Nutrition />}
+            
         </div>
     )
 }

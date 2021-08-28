@@ -6,8 +6,8 @@ const PictureCarouselCard = () => {
         <>
            <div className=" mr-4 h-64 lg:h-80 relative rounded-lg ">
                <div className="image w-52 lg:w-full h-full">
-                   <img src="https://b.zmtcdn.com/data/collections/83fed288b6d32c932b7d3a0034c4f947_1625650348.png?output-format=webp"
-                    alt="image"
+                   <img src="https://b.zmtcdn.com/data/collections/42e666d436d9a3b90431e6cc4a6b242d_1582106525.jpg?output-format=webp"
+                   alt="image"
                     className="w-full h-full object-cover rounded-lg" />
                </div>
                <div className="shade absolute w-full h-full rounded-lg z-10 bottom-0" 
