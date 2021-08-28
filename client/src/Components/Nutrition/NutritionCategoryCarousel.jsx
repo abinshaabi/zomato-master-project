@@ -4,14 +4,14 @@ import { NextArrow, PrevArrow } from '../CarousalArrow';
 
 const CategoryCard = (props) => {
     return (<>
-        <div className="hidden lg:flex flex-col items-center shadow-lg rounded-md border mr-5 p-2">
-            <div className="w-44 h-36">
+        <div className="w-24 md:w-56 lg:w-auto h-full flex flex-col items-center  shadow-lg rounded-md border lg:mr-5 lg:p-2">
+            <div className="w-28 h-14 lg:w-44  lg:h-36">
                 <img src={props.image}
                 alt="food"
-                className="w-full h-full p-1 object-cover " />
+                className="w-full h-full  object-cover " />
             </div>
             <div>
-                <h3 className="text-xl  p-4 font-extralight">{props.title}</h3>
+                <h3 className="lg:text-xl py-1 md:py-2 lg:py-3 font-extralight text-center">{props.title}</h3>
             </div>
         </div>
     
@@ -63,6 +63,14 @@ const NutritionCategoryCarousel = () => {
     }
     return (
         <>
+            <div className="my-10 flex flex-wrap gap-3 justify-between lg:hidden">
+                {categories.map((item) => (
+                    <CategoryCard {...item}/>
+                ))}        
+                    
+                
+            </div>
+            
             <div className="my-10 hidden lg:block">
                 <Slider {...settings}>
                     {categories.map((item) => (
