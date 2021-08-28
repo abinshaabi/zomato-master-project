@@ -5,6 +5,7 @@ import temp from "./Components/temp";
 
 //components 
 import HomeHOC from "./HOC/Home.HOC";
+import RestaurantHOC from "./HOC/Restaurant.HOC";
 
 //pages
 import Home from "./Pages/Home";
@@ -18,6 +19,8 @@ function App() {
       </Route>
 
       <HomeHOC path="/:type" exact component={Home}/>
+      <RestaurantHOC path="/restaurant/:id" exact component={temp}/>
+      
     </>
   );
 }
