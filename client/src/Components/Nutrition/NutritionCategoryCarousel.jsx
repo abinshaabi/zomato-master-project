@@ -2,6 +2,7 @@ import React from 'react'
 import Slider from 'react-slick';
 import { NextArrow, PrevArrow } from '../CarousalArrow';
 
+
 const CategoryCard = (props) => {
     return (<>
         <div className="w-24 md:w-56 lg:w-auto h-full flex flex-col items-center  shadow-lg rounded-md border lg:mr-5 lg:p-2">

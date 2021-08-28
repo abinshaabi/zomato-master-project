@@ -3,15 +3,16 @@ import temp from "./Components/temp";
 
 //components 
 import HomeHOC from "./HOC/Home.HOC";
-import Master from "./Components/Master";
 
+//pages
+import Home from "./Pages/Home";
 
 
 function App() {
   return (
     <>
       <HomeHOC path="/" exact component={temp}/>
-      <HomeHOC path="/:type" exact component={Master}/>
+      <HomeHOC path="/:type" exact component={Home}/>
     </>
   );
 }
