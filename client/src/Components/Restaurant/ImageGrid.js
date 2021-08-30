@@ -4,14 +4,14 @@ import {AiOutlineCamera} from "react-icons/ai"
 const ImageGrid = (props) => {
     return (
         <>
-            <div className="container mx-auto px-4 lg:px-20">
-                <div className="md:hidden w-full my-8 h-60 ">
+            
+                <div className="md:hidden w-full mt-5 h-60 ">
                     <img src={props.image[0]} 
                     alt="rest image"
                     className="w-full h-full object-cover rounded-lg"/>
                 </div>
 
-                <div className="hidden md:flex my-10 w-full h-80 lg:h-96 pb-10 lg:pb-5 flex gap-1">
+                <div className="hidden md:flex mt-10 w-full h-80 lg:h-96 pb-1 lg:pb-3 flex gap-1">
                     <div className="w-8/12 h-full overflow-hidden ">
                         <img src={props.image[0]} 
                         alt="rest image"
@@ -51,7 +51,7 @@ const ImageGrid = (props) => {
                     </div>
                     
                 </div>
-            </div>
+            
         </>
     )
 }

@@ -1,9 +1,14 @@
 import React from 'react'
+import { RiDirectionLine, RiShareForwardLine } from 'react-icons/ri'
+import { TiStarOutline } from 'react-icons/ti'
+import { BiBookmarkPlus } from 'react-icons/bi'
 
 
 //components
 import RestaurantNavbar from '../Components/Navbar/restaurantNavbar'
 import ImageGrid from '../Components/Restaurant/ImageGrid'
+import InfoButtons from '../Components/Restaurant/InfoButtons'
+import RestaurantInfo from '../Components/Restaurant/RestaurantInfo'
 
 const RestaurantLayout = (props) => {
     const images = [
@@ -15,7 +20,27 @@ const RestaurantLayout = (props) => {
     return (
         <>
             <RestaurantNavbar />
-            <ImageGrid image={images}/>
+            <div className="container mx-auto px-4 lg:px-20">
+                <ImageGrid image={images}/>
+
+                <RestaurantInfo />
+
+                <div className="flex my-2 gap-4 flex-wrap">
+                    <InfoButtons isActive>
+                        <TiStarOutline />Add review
+                    </InfoButtons>
+                    <InfoButtons >
+                        <RiDirectionLine />Direction
+                    </InfoButtons>
+                    <InfoButtons >
+                        <BiBookmarkPlus />Bookmark
+                    </InfoButtons>
+                    <InfoButtons >
+                        <RiShareForwardLine />Share
+                    </InfoButtons>
+                </div>
+            </div>
+
         </>
     )
 }
