@@ -10,6 +10,7 @@ import temp from "./Components/temp";
 //pages
 import Home from "./Pages/Home";
 import Overview from "./Pages/Restaurant/Overview";
+import OrderOnline from "./Pages/Restaurant/OrderOnline";
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       <HomeHOC path="/:type" exact component={Home}/>
       <RestaurantHOC path="/restaurant/:id" exact component={temp}/>
       <RestaurantHOC path="/restaurant/:id/overview" exact component={Overview}/>
-      <RestaurantHOC path="/restaurant/:id/order-online" exact component={Overview}/>
+      <RestaurantHOC path="/restaurant/:id/order-online" exact component={OrderOnline}/>
       <RestaurantHOC path="/restaurant/:id/reviews" exact component={Overview}/>
       <RestaurantHOC path="/restaurant/:id/menu" exact component={temp}/>
       <RestaurantHOC path="/restaurant/:id/photos" exact component={temp}/>
