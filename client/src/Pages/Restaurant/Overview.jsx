@@ -7,7 +7,7 @@ import MenuCollection from '../../Components/Restaurant/MenuCollection';
 import MenuSimilarRestaurantcard from '../../Components/Restaurant/MenuSimilarRestaurantCard';
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from '../../Components/Restaurant/Reviews/ReviewCard';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import MapView from '../../Components/Restaurant/MapView'
 
 
 const Overview = () => {
@@ -136,7 +136,7 @@ const Overview = () => {
 
 
                 <div>
-                    <h4 className="text-xl font-normal mt-8 mb-3">Rate Your Delivery Rating</h4>
+                    <h4 className="text-xl font-normal mt-8 mb-3">Rate Your Delivery Experience</h4>
                     <ReactStars
                         count={5}
                         onChange={ratingChanged}
@@ -145,7 +145,16 @@ const Overview = () => {
                     />,
                 </div>
 
-                
+                <div className="md:hidden flex flex-col gap-5 mt-8 mb-10 ">
+                    <MapView 
+                        title="Domino's Pizza" 
+                        phno="+918596365251" 
+                        mapLocation={[12.958647429470709, 77.52561168192169]}  
+                        address="32, Near Chandra Layout Bus Stop, 1st Stage, 3rd Phase, Vijay Nagar, Bangalore"
+                    />
+                </div>
+
+
                 <div className="mt-8 mb-3">
                     <hr />
                     <div className="flex flex-col my-3 ">
@@ -163,28 +172,14 @@ const Overview = () => {
             </div>
             <aside
                style={{ height: "fit-content", boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.1)"}} 
-               className="hidden md:block md:w-4/12 sticky rounded-xl top-2 p-3 bg-white shadow-xl"
+               className="hidden md:flex flex-col gap-5 md:w-4/12 sticky rounded-xl top-2 p-3 bg-white ml-3 shadow-xl"
             >
-                <div>
-                    <h4 className="text-xl font-normal ">Call</h4>
-                    <h5 className="text-zomato-400 font-normal">+919562364752</h5>
-                </div>
-                <div>
-                    <h4 className="text-xl font-normal ">Direction</h4>
-                    <div className="w-full h-48">
-                        <MapContainer center={[12.958647429470709, 77.52561168192169]} zoom={13} scrollWheelZoom={false}>
-                        <TileLayer
-                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        />
-                        <Marker position={[12.958647429470709, 77.52561168192169]}>
-                            <Popup>
-                            A pretty CSS3 popup. <br /> Easily customizable.
-                            </Popup>
-                        </Marker>
-                        </MapContainer>
-                    </div>
-                </div>
+                <MapView 
+                    title="Domino's Pizza" 
+                    phno="+918596365251" 
+                    mapLocation={[12.958647429470709, 77.52561168192169]}  
+                    address="32, Near Chandra Layout Bus Stop, 1st Stage, 3rd Phase, Vijay Nagar, Bangalore"
+                />
             </aside>
           </div>  
         </>
