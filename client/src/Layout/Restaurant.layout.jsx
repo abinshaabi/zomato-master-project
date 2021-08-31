@@ -9,6 +9,7 @@ import RestaurantNavbar from '../Components/Navbar/restaurantNavbar'
 import ImageGrid from '../Components/Restaurant/ImageGrid'
 import InfoButtons from '../Components/Restaurant/InfoButtons'
 import RestaurantInfo from '../Components/Restaurant/RestaurantInfo'
+import TabContainer from '../Components/Restaurant/Tabs'
 
 const RestaurantLayout = (props) => {
     const images = [
@@ -30,15 +31,20 @@ const RestaurantLayout = (props) => {
                         <TiStarOutline />Add review
                     </InfoButtons>
                     <InfoButtons >
-                        <RiDirectionLine />Direction
+                        <RiDirectionLine className="text-zomato-400"/>Direction
                     </InfoButtons>
                     <InfoButtons >
-                        <BiBookmarkPlus />Bookmark
+                        <BiBookmarkPlus className="text-zomato-400"/>Bookmark
                     </InfoButtons>
                     <InfoButtons >
-                        <RiShareForwardLine />Share
+                        <RiShareForwardLine className="text-zomato-400"/>Share
                     </InfoButtons>
                 </div>
+                <div className="my-10">
+                    <TabContainer />
+                
+                </div>
+                {props.children}
             </div>
 
         </>

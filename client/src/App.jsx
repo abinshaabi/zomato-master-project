@@ -1,14 +1,15 @@
 import { Route, Redirect } from "react-router-dom";
 
 //HOC
-import temp from "./Components/temp";
+import RestaurantHOC from "./HOC/Restaurant.HOC";
+import HomeHOC from "./HOC/Home.HOC";
 
 //components 
-import HomeHOC from "./HOC/Home.HOC";
-import RestaurantHOC from "./HOC/Restaurant.HOC";
+import temp from "./Components/temp";
 
 //pages
 import Home from "./Pages/Home";
+import Overview from "./Pages/Restaurant/Overview";
 
 
 function App() {
@@ -20,6 +21,11 @@ function App() {
 
       <HomeHOC path="/:type" exact component={Home}/>
       <RestaurantHOC path="/restaurant/:id" exact component={temp}/>
+      <RestaurantHOC path="/restaurant/:id/overview" exact component={Overview}/>
+      <RestaurantHOC path="/restaurant/:id/order-online" exact component={Overview}/>
+      <RestaurantHOC path="/restaurant/:id/reviews" exact component={Overview}/>
+      <RestaurantHOC path="/restaurant/:id/menu" exact component={temp}/>
+      <RestaurantHOC path="/restaurant/:id/photos" exact component={temp}/>
       
     </>
   );

@@ -11,3 +11,8 @@
 }
 */
 
+.leaflet-container {
+  width: inherit;
+  height: inherit;
+  
+}
