@@ -5,7 +5,7 @@ import ReactStars from 'react-rating-stars-component'
 const FoodItem = (props) => {
     return (
         <>
-            <div className="my-5 flex items-start gap-2 md:gap-3">
+            <div className="flex items-start gap-2 md:gap-3">
                 <div className="w-3/12 h-24 md:h-28 lg:h-36">
                     <img src={props.image}
                      alt="food"
