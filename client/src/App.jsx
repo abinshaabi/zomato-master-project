@@ -11,6 +11,7 @@ import temp from "./Components/temp";
 import Home from "./Pages/Home";
 import Overview from "./Pages/Restaurant/Overview";
 import OrderOnline from "./Pages/Restaurant/OrderOnline";
+import Reviews from "./Pages/Restaurant/Reviews";
 
 
 function App() {
@@ -19,13 +20,20 @@ function App() {
       <Route path="/" exact>
         <Redirect to="/delivery"/>
       </Route>
+      <Route path="/restaurant/:id" exact>
+        <Redirect to="/restaurant/:id/order-online"/>
+      </Route>
 
       <HomeHOC path="/:type" exact component={Home}/>
-      <RestaurantHOC path="/restaurant/:id" exact component={temp}/>
+      
       <RestaurantHOC path="/restaurant/:id/overview" exact component={Overview}/>
+      
       <RestaurantHOC path="/restaurant/:id/order-online" exact component={OrderOnline}/>
-      <RestaurantHOC path="/restaurant/:id/reviews" exact component={Overview}/>
+      
+      <RestaurantHOC path="/restaurant/:id/reviews" exact component={Reviews}/>
+      
       <RestaurantHOC path="/restaurant/:id/menu" exact component={temp}/>
+      
       <RestaurantHOC path="/restaurant/:id/photos" exact component={temp}/>
       
     </>
