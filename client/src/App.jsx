@@ -13,6 +13,7 @@ import Overview from "./Pages/Restaurant/Overview";
 import OrderOnline from "./Pages/Restaurant/OrderOnline";
 import Reviews from "./Pages/Restaurant/Reviews";
 import Menu from "./Pages/Restaurant/Menu";
+import Photos from "./Pages/Restaurant/Photos";
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
       
       <RestaurantHOC path="/restaurant/:id/menu" exact component={Menu}/>
       
-      <RestaurantHOC path="/restaurant/:id/photos" exact component={temp}/>
+      <RestaurantHOC path="/restaurant/:id/photos" exact component={Photos}/>
       
     </>
   );
