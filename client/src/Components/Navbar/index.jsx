@@ -1,10 +1,16 @@
-import React from 'react'
-import { FaUserAlt } from "react-icons/fa"
+import React, { useState } from 'react'
+
 import { HiLocationMarker } from "react-icons/hi"
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io"
 import { RiSearch2Line } from "react-icons/ri"
+import SignIn from '../Auth/SignIn'
+import SignUp from '../Auth/Signup'
+import UserDropdown from './UserDropdown'
 
-const MobileNav = () => {
+
+const MobileNav = ({ SignIn, SignUp }) => {
+    //const OpenTheSignInModal = () => setIsOpen(true)
+
     return (
         
         <div className=" p-3 flex w-full items-center justify-between shadow lg:hidden ">
@@ -16,9 +22,11 @@ const MobileNav = () => {
             <div className="flex items-center gap-3">
                 <button className="bg-zomato-400 text-white text-sm py-1 px-2 rounded-full ">Use App</button>
                 
-                <span className="border p-2 border-gray-300 text-zomato-400 rounded-full">
-                    <FaUserAlt />
-                </span>
+                
+                <UserDropdown
+                 isOpen={SignIn.openSignIn} setIsOpen={SignIn.setOpenSignIn}
+                 isUpOpen={SignUp.openSignUp} setIsUpOpen={SignUp.setOpenSignUp}
+                />
             </div>
         </div>
         
@@ -63,7 +71,15 @@ const MediumNav = () => {
 
 }
 
-const LargeNav = () => {
+const LargeNav = ({ SignIn, SignUp}) => {
+    function openSignInModal() {
+        SignIn.setOpenSignIn(true)
+      }
+
+    function openSignUpModal() {
+        SignUp.setOpenSignUp(true)
+    }
+
     return (
         <>
             
@@ -90,10 +106,10 @@ const LargeNav = () => {
                     </div>
                 </div>
                 <div className=" flex items-center  gap-10">
-                    <button className=" text-gray-500 text-xl hover:text-gray-800">
+                    <button onClick={openSignInModal} className=" text-gray-500 text-xl hover:text-gray-800">
                         Login
                     </button>
-                    <button className=" text-gray-500 text-xl hover:text-gray-800">
+                    <button onClick={openSignUpModal} className=" text-gray-500 text-xl hover:text-gray-800">
                         Signup
                     </button>
                 </div>
@@ -106,12 +122,19 @@ const LargeNav = () => {
 
 
 const Navbar = () => {
+    const [openSignIn, setOpenSignIn] = useState(false)
+    const [openSignUp, setOpenSignUp] = useState(false)
+    
+    
+
     return (
         <>
+            <SignIn isOpen={openSignIn} setIsOpen={setOpenSignIn} />
+            <SignUp isOpen={openSignUp} setIsOpen={setOpenSignUp} />
            <nav className=" bg-white flex  w-full items-center">
-                    <MobileNav />      
+                    <MobileNav SignIn={{openSignIn, setOpenSignIn}} SignUp={{openSignUp, setOpenSignUp}} />      
                     
-                    <LargeNav />
+                    <LargeNav SignIn={{openSignIn, setOpenSignIn}}  SignUp={{openSignUp, setOpenSignUp}}/>
                 
            </nav>
 
