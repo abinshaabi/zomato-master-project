@@ -14,6 +14,8 @@ import OrderOnline from "./Pages/Restaurant/OrderOnline";
 import Reviews from "./Pages/Restaurant/Reviews";
 import Menu from "./Pages/Restaurant/Menu";
 import Photos from "./Pages/Restaurant/Photos";
+import CheckoutHOC from "./HOC/Checkout.Hoc";
+import Checkout from "./Pages/Checkout";
 
 
 function App() {
@@ -38,6 +40,8 @@ function App() {
       
       <RestaurantHOC path="/restaurant/:id/photos" exact component={Photos}/>
       
+
+      <CheckoutHOC path="/checkout/orders" exact component={Checkout}/>
     </>
   );
 }
