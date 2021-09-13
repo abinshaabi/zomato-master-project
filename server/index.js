@@ -21,7 +21,7 @@ import Menu from "./API/Menu"
 import Order from "./API/Orders"
 import Reviews from "./API/Reviews"
 import User from "./API/User"
-
+import Image from "./API/Image"
 
 //database connection
 import ConnectDB from "./database/connection"
@@ -52,6 +52,8 @@ zomato.use("/menu", Menu)
 zomato.use("/order", Order)
 zomato.use("/reviews", Reviews)
 zomato.use("/user", User)
+zomato.use("/image", Image)
+
 
 
 zomato.get("/", (req,res) => res.json({ message : "setup success"}))
