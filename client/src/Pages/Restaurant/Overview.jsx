@@ -83,6 +83,9 @@ const Overview = () => {
         console.log(newRating);
       };
 
+    const getLatLong = (mapAddress) => {
+        return mapAddress?.split(",").map((item) => parseFloat(item))
+    }
     return (
         <>
         
@@ -114,24 +117,18 @@ const Overview = () => {
                 
                 <h4 className="text-xl font-normal mt-8 mb-3">Cuisines</h4>
                 <div className="flex flex-wrap gap-2">
-                    <span className="border border-gray-300 text-blue-600 px-2 py- rounded-full">
-                        Street Food
-                    </span>
-                    <span className="border border-gray-300 text-blue-600 px-2 py- rounded-full">
-                        Street Food
-                    </span>
-                    <span className="border border-gray-300 text-blue-600 px-2 py- rounded-full">
-                        Street Food
-                    </span>
-                    <span className="border border-gray-300 text-blue-600 px-2 py- rounded-full">
-                        Street Food
-                    </span>
+                    {reduxState?.cuisine.map((data) => (
+                        <span className="border border-gray-300 text-blue-600 px-2 py- rounded-full">
+                            {data}
+                        </span>
+                    ))}
+                    
                 </div>
 
 
                 <div>
                     <h4 className="text-xl font-normal mt-8 mb-3">Average Cost</h4>
-                    <h6 className="text-lg font-light">₹300 for two people (approx.)</h6>
+                    <h6 className="text-lg font-light">₹{reduxState.averageCost} for two people (approx.)</h6>
                     <small className=" text-gray-500 font-light">Exclusive of applicable taxes and charges, if any</small>
                 </div>
 
@@ -177,10 +174,10 @@ const Overview = () => {
 
                 <div className="md:hidden flex flex-col gap-5 mt-8 mb-10 ">
                     <MapView 
-                        title="Domino's Pizza" 
-                        phno="+918596365251" 
-                        mapLocation={[12.958647429470709, 77.52561168192169]}  
-                        address="32, Near Chandra Layout Bus Stop, 1st Stage, 3rd Phase, Vijay Nagar, Bangalore"
+                        title={reduxState?.name} 
+                        phno={`+91${reduxState?.contactNumber}`} 
+                        mapLocation={getLatLong(reduxState?.mapLocation)}  
+                        address={reduxState.address}
                     />
                 </div>
 
@@ -205,10 +202,10 @@ const Overview = () => {
                className="hidden md:flex flex-col gap-5 md:w-4/12 sticky rounded-xl top-2 p-3 bg-white ml-3 shadow-xl"
             >
                 <MapView 
-                    title="Domino's Pizza" 
-                    phno="+918596365251" 
-                    mapLocation={[12.958647429470709, 77.52561168192169]}  
-                    address="32, Near Chandra Layout Bus Stop, 1st Stage, 3rd Phase, Vijay Nagar, Bangalore"
+                    title={reduxState?.name} 
+                    phno={`+91${reduxState?.contactNumber}`} 
+                    mapLocation={getLatLong(reduxState?.mapLocation)}  
+                    address={reduxState.address}
                 />
             </aside>
           </div>  
