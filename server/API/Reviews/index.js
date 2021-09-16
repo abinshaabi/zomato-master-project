@@ -13,14 +13,33 @@ const Router =express.Router();
 
 
 /*
-Route   /food/new
+Route     /
+Des       Get all review
+Params    resid
+BODY      none
+Access    Public
+Method    GET  
+*/
+Router.get("/:resid", async (req, res) => {
+    try {
+      const reviews = await ReviewModel.find({ restaurant: req.params.resid });
+      return res.json({ reviews });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  });
+  
+
+
+/*
+Route   /new
 Des     add new food review/rating
 Params  nil
 Body    review object
 Access  Public
 Method  POST
 */
-Router.post("/food/new", async (req, res) => {
+Router.post("/new", async (req, res) => {
     try {
         await ValidateReviewData(req.body);
 

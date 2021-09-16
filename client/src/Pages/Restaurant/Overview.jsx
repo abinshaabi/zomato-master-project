@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoMdArrowDropright } from 'react-icons/io'
 import { Link, useParams } from 'react-router-dom'
 import Slider from 'react-slick';
@@ -9,9 +9,17 @@ import ReactStars from "react-rating-stars-component";
 import ReviewCard from '../../Components/Restaurant/Reviews/ReviewCard';
 import MapView from '../../Components/Restaurant/MapView'
 
+//redux actions
+import { getImage } from '../../Redux/Reducer/Image/Image.action';
+import { getReviews } from '../../Redux/Reducer/Reviews/review.action';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Overview = () => {
     const {id} = useParams();
+
+    const [menuImage, setMenuImages] = useState({ images: [] });
+    const [Reviews, setReviewss] = useState([]);
+
     const settings = {
         arrows:true,
         infinite:true,
@@ -49,6 +57,28 @@ const Overview = () => {
           ],
     }
 
+    const reduxState = useSelector(
+        (globalStore) => globalStore.restaurant.selectedRestaurant.restaurant
+    )
+
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        if(reduxState) {
+            dispatch(getImage(reduxState?.menuImage)).then(
+                (data) => {
+                    const images= []
+                    data.payload.image.images.map( ({ location }) => images.push(location) )
+                    setMenuImages(images)
+                }
+            )
+            
+        }
+    }, [])
+
+
+    
+
     const ratingChanged = (newRating) => {
         console.log(newRating);
       };
@@ -76,12 +106,7 @@ const Overview = () => {
                     <MenuCollection
                       menuTitle="Menu"
                       
-                      images={[
-                        'https://b.zmtcdn.com/data/menus/555/61555/50a7b1f53c8eb5ef92971e844678343f.jpg',
-                        'https://b.zmtcdn.com/data/menus/555/61555/f175d82bcfb3597f4b04cc89c07e7514.jpg',
-                        'https://b.zmtcdn.com/data/menus/555/61555/bdb0c51a6f6037748307f3cdd761af32.jpg',
-                        'https://b.zmtcdn.com/data/menus/555/61555/180608b4945052c3ef03d8a65aa42e67.jpg',
-                      ]}
+                      images={menuImage}
                     />
                 </div>
                 
