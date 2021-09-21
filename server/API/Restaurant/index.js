@@ -44,9 +44,12 @@ Router.get("/:_id", async (req, res) => {
         await ValidateRestaurantId(req.params);
         const { _id } = req.params;
         const restaurant = await RestaurantModel.findById(_id);
-
-        if(!restaurant) return res.status(404).json({ error: "Restaurant Not Found" })
+        
+        if(!restaurant) 
+            return res.status(404).json({ error: "Restaurant Not Found" })
+        return res.json({ restaurant });
     } catch (error) {
+        
         return res.status(500).json({ error: error.message })
     }
 })
