@@ -1,17 +1,31 @@
 import axios from 'axios'
 
 //Redux types
-import { GET_FOOD_LIST } from './Food.type'
+import { GET_FOOD, GET_FOOD_LIST } from './Food.type'
 
 
-export const getFoodList = (resId)  => async (dispatch) => {
+export const getFood = (foodId)  => async (dispatch) => {
     try {
         const Food = await axios({
             method: "GET",
-            url: `http://localhost:3000/food/r/${resId}`
+            url: `http://localhost:3000/food/${foodId}`
         })
 
-        return dispatch({ type: GET_FOOD_LIST, payload: Food.data})
+        return dispatch({ type: GET_FOOD,  payload: Food.data})
+    } catch (error) {
+        return dispatch({ type: "ERROR", payload: error})
+    }
+}
+
+
+export const getFoodList = (menuId)  => async (dispatch) => {
+    try {
+        const Menu = await axios({
+            method: "GET",
+            url: `http://localhost:3000/menu/list/${menuId}`
+        })
+
+        return dispatch({ type: GET_FOOD_LIST, payload: Menu.data})
     } catch (error) {
         return dispatch({ type: "ERROR", payload: error})
     }
