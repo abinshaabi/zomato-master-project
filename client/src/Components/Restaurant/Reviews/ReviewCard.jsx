@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import dayjs from 'dayjs'
 import { TiStarFullOutline }  from 'react-icons/ti'
+import { useDispatch } from 'react-redux';
+import { getUser } from '../../../Redux/Reducer/User/User.action';
 
-const ReviewCard = () => {
+const ReviewCard = (props) => {
+    const [user, setUser] = useState({});
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+      dispatch(getUser(props.user)).then((data) =>
+        //setUser(data.payload.user.user.user)
+        console.log(data)
+      );
+    }, []);
+  
     return (
         <>
             <div className=" my-5 flex flex-col gap-3">
@@ -13,7 +26,7 @@ const ReviewCard = () => {
                             className="w-full h-full rounded-full object-cover" />
                         </div>
                         <div className="flex flex-col ">
-                            <h3 className="text-lg font-semibold">Pavan Kumar</h3>
+                            <h3 className="text-lg font-semibold">{user?.fullName}</h3>
                             <small className="text-gray-500">5 Reviews &#8226; 3 Followers</small>
                         </div>
                     </div>
@@ -23,15 +36,14 @@ const ReviewCard = () => {
                 <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-3">
                         <span className="text-white bg-green-700 px-1 text-sm rounded-md flex items-center gap-1">
-                            3.5 <TiStarFullOutline />
+                            {props.rating} <TiStarFullOutline />
                         </span>
-                        <h5 className=" text-sm ">DELIVERY</h5>
-                        <small className="text-gray-500">3 days ago</small>
+                        <h5 className=" text-sm ">{props.isRestaurantReview ? "DINING" : "DELIVERY"}</h5>
+                        <small className="text-gray-500">{dayjs(props.createdAt).format("DD MM YYYY")} days ago</small>
                     </div>
                     <div className="w-full">
                         <p className="w-full text-gray-600 font-light text-base">
-                            my favorite place to order pizzaaa...!!
-                            soo muchhh of toppings...soo yummyyy....better than any other pizzas...lovedd itttt..thank youuuu
+                            {props.reviewText}    
                         </p>
                     </div>
                 </div>

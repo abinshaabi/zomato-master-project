@@ -1,15 +1,15 @@
-import { GET_IMAGE } from "./Image.type";
+import { GET_FOOD_LIST } from "./Food.type";
 
 const INITIAL_STATE = {
-    Image: [],
+    FoodList: [],
 }
 
-const ImageReducer = (state = INITIAL_STATE,action) => {
+const FoodReducer = (state = INITIAL_STATE,action) => {
     switch (action.type) {
-        case GET_IMAGE:
+        case GET_FOOD_LIST:
             return {
                 ...state,
-                Image: action.payload,
+                FoodList: action.payload,
             }
             
     
@@ -20,4 +20,4 @@ const ImageReducer = (state = INITIAL_STATE,action) => {
     }
 }
 
-export default ImageReducer
+export default FoodReducer

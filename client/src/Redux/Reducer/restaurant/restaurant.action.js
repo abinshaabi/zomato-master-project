@@ -5,9 +5,9 @@ import { GET_RESTAURANT, GET_SPECIFIC_RESTAURANT } from './restaurant.type'
 
 export const getRestaurant = ()  => async (dispatch) => {
     try {
-        const restaurantList = axios({
+        const restaurantList = await axios({
             method: "GET",
-            url: "http://localhost:4000/restaurant?city=sdd"
+            url: "http://localhost:3000/restaurant/?city=Bangalore"
         })
 
         return dispatch({ type: GET_RESTAURANT, payload: restaurantList.data})
@@ -20,7 +20,7 @@ export const getSpecificRestaurant = (_id) => async (dispatch) => {
     try {
       const restaurant = await axios({
         method: "GET",
-        url: `http://localhost:4000/restaurant/${_id}`,
+        url: `http://localhost:3000/restaurant/${_id}`,
       });
   
       return dispatch({

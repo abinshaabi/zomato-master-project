@@ -53,10 +53,10 @@ const RestaurantLayout = (props) => {
                 <ImageGrid images={restaurant.images}/>
 
                 <RestaurantInfo
-                    name={restaurant.name}
-                    restaurantRating ={restaurant.rating || 0}
-                    cuisine={restaurant.cuisine}
-                    address={restaurant.address}
+                    name={restaurant?.name}
+                    restaurantRating ={restaurant.rating || 0 }
+                    cuisine={restaurant?.cuisine}
+                    address={restaurant?.address}
                 />
 
                 <div className="flex my-2 gap-4 flex-wrap">

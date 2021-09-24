@@ -15,8 +15,9 @@ const RestaurantCard = (props) => {
             (data) => setImage(data.payload.image)
         )
     }, [props.photos])
-    
-
+    console.log("img", image );
+    console.log(props.photos);
+    console.log("rest idd", props._id);
     return (
         <Link to={`/restaurant/${props._id}` }  className="w-full">
         <div className="bg-white   p-3 mb-4  w-full rounded-2xl transition duration-700 ease-in-out hover:shadow-lg md:w-6/12 lg:w-1/3">

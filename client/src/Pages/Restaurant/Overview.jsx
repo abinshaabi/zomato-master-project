@@ -18,7 +18,7 @@ const Overview = () => {
     const {id} = useParams();
 
     const [menuImage, setMenuImages] = useState({ images: [] });
-    const [Reviews, setReviewss] = useState([]);
+    const [Reviews, setReviews] = useState([]);
 
     const settings = {
         arrows:true,
@@ -73,8 +73,10 @@ const Overview = () => {
                 }
             )
             
+            //for reviews
+            dispatch(getReviews(reduxState._id)).then((data) => setReviews(data.payload.reviews))
         }
-    }, [])
+    }, [reduxState])
 
 
     
@@ -128,7 +130,7 @@ const Overview = () => {
 
                 <div>
                     <h4 className="text-xl font-normal mt-8 mb-3">Average Cost</h4>
-                    <h6 className="text-lg font-light">₹{reduxState.averageCost} for two people (approx.)</h6>
+                    <h6 className="text-lg font-light">₹{reduxState?.averageCost} for two people (approx.)</h6>
                     <small className=" text-gray-500 font-light">Exclusive of applicable taxes and charges, if any</small>
                 </div>
 
@@ -177,7 +179,7 @@ const Overview = () => {
                         title={reduxState?.name} 
                         phno={`+91${reduxState?.contactNumber}`} 
                         mapLocation={getLatLong(reduxState?.mapLocation)}  
-                        address={reduxState.address}
+                        address={reduxState?.address}
                     />
                 </div>
 
@@ -185,10 +187,10 @@ const Overview = () => {
                 <div className="mt-8 mb-3">
                     <hr />
                     <div className="flex flex-col my-3 ">
-                        <ReviewCard />
-                        <ReviewCard />
-                        <ReviewCard />
-                        <ReviewCard />
+                        {Reviews.map((reviewDetails) => (
+                            <ReviewCard {...reviewDetails} />
+                            
+                        ))}
                         
                     </div>
                     <hr />
@@ -203,9 +205,9 @@ const Overview = () => {
             >
                 <MapView 
                     title={reduxState?.name} 
-                    phno={`+91${reduxState?.contactNumber}`} 
+                    phno={`+91 ${reduxState?.contactNumber}`} 
                     mapLocation={getLatLong(reduxState?.mapLocation)}  
-                    address={reduxState.address}
+                    address={reduxState?.address}
                 />
             </aside>
           </div>  
