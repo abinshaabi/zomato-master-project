@@ -1,14 +1,44 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
+import { useDispatch } from 'react-redux'
+import { signIn } from '../../Redux/Reducer/Auth/Auth.action'
 
 export default function SignIn({ isOpen, setIsOpen}) {
-  
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  })
+  const dispatch = useDispatch()
+
+  const handleChange = (e) => setUserData((prev) => ({...prev,  [e.target.name]: e.target.value }))
+  /*const handleChange = (e) => {
+    const demo = {
+      email: "",
+      password: "",
+    }
+    if (e.target.name === "email"){
+      demo.email = e.target.value
+    }
+    else {
+      demo.password = e.target.value
+    }
+    setUserData(demo)
+
+  }*/
 
   function closeModal() {
     setIsOpen(false)
   }
 
+  const Submit = () => {
+    console.log("helooooo signin");
+    dispatch(signIn(userData))
+    setUserData({
+      email: "",
+      password: "",
+    })
+  }
   
 
   return (
@@ -63,6 +93,9 @@ export default function SignIn({ isOpen, setIsOpen}) {
                         <input
                             type="email"
                             id="email"
+                            name="email"
+                            value={userData.email}
+                            onChange={handleChange}
                             placeholder="email@email.com"
                             className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400"
                         />
@@ -72,13 +105,16 @@ export default function SignIn({ isOpen, setIsOpen}) {
                         <input
                             type="password"
                             id="password"
+                            name="password"
+                            value={userData.password}
+                            onChange={handleChange}
                             placeholder="**********"
                             className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400"
                         />
                     </div>
-                    <button className="w-full bg-zomato-400 text-white py-2 px-3 rounded-lg">
+                    <div className="text-center w-full bg-zomato-400 text-white py-2 px-3 rounded-lg" onClick={Submit}>
                         Sign In
-                    </button>
+                    </div>
                   </form>
                 </div>
 

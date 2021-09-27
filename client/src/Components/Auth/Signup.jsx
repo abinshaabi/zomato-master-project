@@ -1,9 +1,44 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
+import { useDispatch } from 'react-redux'
+import { signUp } from '../../Redux/Reducer/Auth/Auth.action'
 
 export default function SignUp({ isOpen, setIsOpen}) {
-  
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+    fullName: "",
+  })
+  const dispatch = useDispatch()
+
+  const handleChange = (e) => setUserData((prev) => ({...prev,  [e.target.id]: e.target.value }))
+  /*const handleChange = (e) => {
+    const demo = {
+      email: "",
+      password: "",
+    }
+    if (e.target.name === "email"){
+      demo.email = e.target.value
+    }
+    else {
+      demo.password = e.target.value
+    }
+    setUserData(demo)
+
+  }*/
+
+
+  const Submit = () => {
+    console.log("helooooo signup");
+    dispatch(signUp(userData))
+    setUserData({
+      email: "",
+      password: "",
+      fullName: "",
+    })
+  }
+    
 
   function closeModal() {
     setIsOpen(false)
@@ -64,6 +99,8 @@ export default function SignUp({ isOpen, setIsOpen}) {
                         <input
                             type="fullName"
                             id="fullName"
+                            onChange={handleChange}
+                            value={userData.fullName}
                             placeholder="Tom Kay"
                             className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400"
                         />
@@ -74,6 +111,8 @@ export default function SignUp({ isOpen, setIsOpen}) {
                             type="email"
                             id="email"
                             placeholder="email@email.com"
+                            value={userData.email}
+                            onChange={handleChange}
                             className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400"
                         />
                     </div>
@@ -83,12 +122,14 @@ export default function SignUp({ isOpen, setIsOpen}) {
                             type="password"
                             id="password"
                             placeholder="**********"
+                            value={userData.password}
+                            onChange={handleChange}
                             className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400"
                         />
                     </div>
-                    <button className="w-full bg-zomato-400 text-white py-2 px-3 rounded-lg">
+                    <div onClick={Submit} className="text-center w-full bg-zomato-400 text-white py-2 px-3 rounded-lg">
                         Sign Up
-                    </button>
+                    </div>
                   </form>
                 </div>
 

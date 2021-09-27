@@ -16,11 +16,12 @@ export const getReviews = (resId)  => async (dispatch) => {
     }
 }
 
-export const posttReviews = (reviewData) => async (dispatch) => {
+export const postReviews = (reviewData) => async (dispatch) => {
     try {
       await axios({
         method: "POST",
         url: `http://localhost:3000/reviews/new`,
+        data: { reviewData },
       });
   
       return dispatch({

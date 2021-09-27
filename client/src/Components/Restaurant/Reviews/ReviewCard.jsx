@@ -9,10 +9,10 @@ const ReviewCard = (props) => {
     const dispatch = useDispatch();
   
     useEffect(() => {
-      dispatch(getUser(props.user)).then((data) =>
-        //setUser(data.payload.user.user.user)
+      dispatch(getUser(props.user)).then((data) =>{
+        setUser(data.payload.user)
         console.log(data)
-      );
+        });
     }, []);
   
     return (
@@ -26,7 +26,7 @@ const ReviewCard = (props) => {
                             className="w-full h-full rounded-full object-cover" />
                         </div>
                         <div className="flex flex-col ">
-                            <h3 className="text-lg font-semibold">{user?.fullName}</h3>
+                            <h3 className="text-lg font-semibold">{user?.fullName ? user?.fullName : user?.fullname}</h3>
                             <small className="text-gray-500">5 Reviews &#8226; 3 Followers</small>
                         </div>
                     </div>

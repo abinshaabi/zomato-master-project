@@ -14,7 +14,7 @@ const Router =express.Router();
 
 /*
 Route   /r
-Des     get all the foods based on particular city
+Des     get all the foods based on restauarnt
 Params  id
 Access  Public
 Method  GET
@@ -23,7 +23,7 @@ Router.get("/r/:_id", async (req, res) => {
     try {
         await ValidateRestaurantId(req.params)
         const { _id } = req.params;
-        const foods = await FoodModel.find(_id);
+        const foods = await FoodModel.find({restaurant: _id});
 
         return res.json({ foods })
     } catch (error) {
@@ -53,6 +53,30 @@ Router.get("/c/:category", async (req, res) => {
         
     }
 })
+
+
+
+
+/*
+Route   /:_id
+Des     get all the foods based on id
+Params  id
+Access  Public
+Method  GET
+*/
+Router.get("/:_id", async (req, res) => {
+    try {
+        const { _id } = req.params;
+        const foods = await FoodModel.findById(_id);
+
+        return res.json({ foods })
+    } catch (error) {
+        return res.status(500).json({ error: error.message})
+        
+    }
+})
+
+
 
 
 export default Router;
