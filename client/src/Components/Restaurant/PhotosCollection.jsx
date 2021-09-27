@@ -23,7 +23,7 @@ const PhotosCollection = (props) => {
             
             {isViewerOpen && (
                 <ImageViewer
-                src={ props.images }
+                src={ props.photos }
                 currentIndex={ currentImage }
                 disableScroll={ false }
                 closeOnClickOutside={ true }
@@ -31,7 +31,7 @@ const PhotosCollection = (props) => {
                 />
             )}
             <div className="grid grid-cols-3 md:grid-cols-5  gap-3">
-                {props.images.map((image,index) => (
+                {props.photos.map((image,index) => (
                     <div className="w-28 h-28 md:w-32 md:h-32  lg:w-52 lg:h-52 overflow-hidden  rounded-lg">
                         <img
                             src={image}
