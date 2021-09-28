@@ -44,6 +44,10 @@ export default function SignUp({ isOpen, setIsOpen}) {
     setIsOpen(false)
   }
 
+  const googleSignIn = () => (
+    window.location.href = "http://localhost:3000/auth/google"
+  )
+  
   
 
   return (
@@ -87,7 +91,7 @@ export default function SignUp({ isOpen, setIsOpen}) {
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                 
                 <div className="mt-2 w-full flex flex-col gap-3 ">
-                  <button className="flex items-center justify-center px-3 py-2 gap-2 w-full rounded-lg border border-gray-400 bg-white text-gray-700 hover:bg-gray-200">
+                  <button onClick={googleSignIn} className="flex items-center justify-center px-3 py-2 gap-2 w-full rounded-lg border border-gray-400 bg-white text-gray-700 hover:bg-gray-200">
                       Sign Up with Google  <FcGoogle className="w-6 h-6" />
                   </button>
                   <h1 className="text-2xl text-center font-light mt-2 ">OR</h1>

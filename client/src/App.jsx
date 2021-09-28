@@ -20,6 +20,7 @@ import Menu from "./Pages/Restaurant/Menu";
 import Photos from "./Pages/Restaurant/Photos";
 import CheckoutHOC from "./HOC/Checkout.Hoc";
 import Checkout from "./Pages/Checkout";
+import GoogleAuth from "./Pages/GoogleAuth";
 
 
 
@@ -50,6 +51,10 @@ function App() {
       <RestaurantHOC path="/restaurant/:id/menu" exact component={Menu}/>
       
       <RestaurantHOC path="/restaurant/:id/photos" exact component={Photos}/>
+      
+
+      <HomeHOC path="/google/:token" exact component={GoogleAuth}/>
+      
       
 
       <CheckoutHOC path="/checkout/orders" exact component={Checkout}/>
