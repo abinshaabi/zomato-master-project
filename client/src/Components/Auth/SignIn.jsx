@@ -32,7 +32,7 @@ export default function SignIn({ isOpen, setIsOpen}) {
   }
 
   const Submit = () => {
-    console.log("helooooo signin");
+    closeModal()
     dispatch(signIn(userData))
     setUserData({
       email: "",
@@ -116,7 +116,7 @@ export default function SignIn({ isOpen, setIsOpen}) {
                             className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400"
                         />
                     </div>
-                    <div className="text-center w-full bg-zomato-400 text-white py-2 px-3 rounded-lg" onClick={Submit}>
+                    <div className="cursor-pointer text-center w-full bg-zomato-400 text-white py-2 px-3 rounded-lg" onClick={Submit}>
                         Sign In
                     </div>
                   </form>

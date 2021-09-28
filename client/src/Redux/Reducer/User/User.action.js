@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 //Redux types
-import { GET_USER, SELF } from './User.type'
+import { CLEAR_USER, GET_USER, SELF } from './User.type'
 
 export const getUser = (_id)  => async (dispatch) => {
     try {
@@ -25,6 +25,15 @@ export const getMyUser = ()  => async (dispatch) => {
         })
 
         return dispatch({ type: SELF, payload: User.data})
+    } catch (error) {
+        return dispatch({ type: "ERROR", payload: error})
+    }
+}
+
+export const clearUser = ()  => async (dispatch) => {
+    try {
+        
+        return dispatch({ type: CLEAR_USER, payload: {}})
     } catch (error) {
         return dispatch({ type: "ERROR", payload: error})
     }

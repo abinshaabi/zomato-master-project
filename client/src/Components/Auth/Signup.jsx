@@ -30,7 +30,7 @@ export default function SignUp({ isOpen, setIsOpen}) {
 
 
   const Submit = () => {
-    console.log("helooooo signup");
+    closeModal()
     dispatch(signUp(userData))
     setUserData({
       email: "",
@@ -131,7 +131,7 @@ export default function SignUp({ isOpen, setIsOpen}) {
                             className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400"
                         />
                     </div>
-                    <div onClick={Submit} className="text-center w-full bg-zomato-400 text-white py-2 px-3 rounded-lg">
+                    <div onClick={Submit} className="cursor-pointer text-center w-full bg-zomato-400 text-white py-2 px-3 rounded-lg">
                         Sign Up
                     </div>
                   </form>

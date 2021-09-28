@@ -2,15 +2,19 @@ import { Menu, Transition } from '@headlessui/react'
 import Gravatar from 'react-gravatar'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { FaUserAlt } from "react-icons/fa"
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import SignIn from '../Auth/SignIn'
 import './dropdown.css'
+import { signOut } from '../../Redux/Reducer/Auth/Auth.action'
 
 export default function UserDropdown({isOpen, setIsOpen, isUpOpen, setIsUpOpen}) {
   //let [ isOpenModal, setIsOpenModal ] = useState({isOpen})
 
+  const dispatch = useDispatch();
+
   const reduxState = useSelector(globalStore => globalStore.user.user)
 
+  const signOutHandler = () => dispatch(signOut())
 
   function openSignInModal() {
     setIsOpen(true)
@@ -36,7 +40,7 @@ export default function UserDropdown({isOpen, setIsOpen, isUpOpen, setIsUpOpen})
                 
                 <div className="shadow-2xl dropdown-menu w-18 absolute hidden  text-gray-700 mt-8 md:mt-10 lg:mt-11">
                   
-                  <button  onClick={openSignInModal} className="bg-gray-200 w-full  text-gray-700 hover:bg-gray-300 py-2 px-3 block whitespace-nowrap focus:outline-none">
+                  <button  onClick={signOutHandler} className="bg-gray-200 w-full  text-gray-700 hover:bg-gray-300 py-2 px-3 block whitespace-nowrap focus:outline-none">
                     Sign Out
                   </button>
                   
@@ -51,7 +55,7 @@ export default function UserDropdown({isOpen, setIsOpen, isUpOpen, setIsUpOpen})
                   </span>
                 </a>
                 
-                <div className="shadow-2xl dropdown-menu w-18 absolute hidden  text-gray-700 mt-10">
+                <div className="shadow-2xl dropdown-menu w-18 absolute hidden  text-gray-700  mt-8  lg:mt-11">
                   
                   <button  onClick={openSignInModal} className="bg-gray-100 w-full  text-gray-700 hover:bg-gray-200 py-2 px-3 block whitespace-nowrap focus:outline-none">
                   Sign In
