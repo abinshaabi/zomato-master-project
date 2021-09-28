@@ -8,6 +8,7 @@ import {AiOutlineArrowLeft} from "react-icons/ai"
 import SignIn from '../Auth/SignIn'
 import SignUp from '../Auth/Signup'
 import UserDropdown from './UserDropdown'
+import { useSelector } from 'react-redux'
 
 const MobileNav = ({ SignIn, SignUp }) => {
     return (
@@ -74,6 +75,9 @@ const MediumNav = () => {
 }
 
 const LargeNav = ({ SignIn, SignUp}) => {
+    const reduxState = useSelector(globalStore => globalStore.user.user)
+    const name = reduxState?.user?.fullName.split(' ')[0]
+
     function openSignInModal() {
         SignIn.setOpenSignIn(true)
       }
@@ -108,12 +112,26 @@ const LargeNav = ({ SignIn, SignUp}) => {
                     </div>
                 </div>
                 <div className=" flex items-center  gap-10">
-                    <button onClick={openSignInModal} className=" text-gray-500 text-xl hover:text-gray-800">
-                        Login
-                    </button>
-                    <button onClick={openSignUpModal} className=" text-gray-500 text-xl hover:text-gray-800">
-                        Signup
-                    </button>
+                    {reduxState?.user?.fullName ? (
+                        <>
+                            <button  className=" text-gray-600 text-xl hover:text-gray-800">
+                                {name}
+                            </button>
+                            <UserDropdown
+                            isOpen={SignIn.openSignIn} setIsOpen={SignIn.setOpenSignIn}
+                            isUpOpen={SignUp.openSignUp} setIsUpOpen={SignUp.setOpenSignUp}
+                            />
+                        </>
+                    ) : (
+                        <>
+                            <button onClick={openSignInModal} className=" text-gray-500 text-xl hover:text-gray-800">
+                                Login
+                            </button>
+                            <button onClick={openSignUpModal} className=" text-gray-500 text-xl hover:text-gray-800">
+                                Signup
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
         </>

@@ -31,7 +31,7 @@ const Menu = () => {
         <>
             <h2 className="text-xl md:text-2xl lg:text-2xl font-normal mb-2">Domino's Pizza Menu</h2>
                     
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 mb-20">
                 <MenuCollection menuTitle="Menu"  pages={menus.length} image={menus}  /> 
             </div>
         </>

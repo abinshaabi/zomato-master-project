@@ -21,6 +21,9 @@ import Photos from "./Pages/Restaurant/Photos";
 import CheckoutHOC from "./HOC/Checkout.Hoc";
 import Checkout from "./Pages/Checkout";
 import GoogleAuth from "./Pages/GoogleAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { getMyUser } from "./Redux/Reducer/User/User.action";
+import { useEffect } from "react";
 
 
 
@@ -32,6 +35,13 @@ if (localStorage.zomatoUser) {
 
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.zomatoUser) dispatch(getMyUser());
+  }, [])
+
   return (
     <>
       <Route path="/" exact>

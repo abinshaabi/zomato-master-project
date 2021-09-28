@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { HiLocationMarker } from "react-icons/hi"
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io"
 import { RiSearch2Line } from "react-icons/ri"
+import { useSelector } from 'react-redux'
 import SignIn from '../Auth/SignIn'
 import SignUp from '../Auth/Signup'
 import UserDropdown from './UserDropdown'
@@ -10,6 +11,7 @@ import UserDropdown from './UserDropdown'
 
 const MobileNav = ({ SignIn, SignUp }) => {
     //const OpenTheSignInModal = () => setIsOpen(true)
+    const reduxState = useSelector(globalStore => globalStore.user.user)
 
     return (
         
@@ -23,10 +25,12 @@ const MobileNav = ({ SignIn, SignUp }) => {
                 <button className="bg-zomato-400 text-white text-sm py-1 px-2 rounded-full ">Use App</button>
                 
                 
-                <UserDropdown
-                 isOpen={SignIn.openSignIn} setIsOpen={SignIn.setOpenSignIn}
-                 isUpOpen={SignUp.openSignUp} setIsUpOpen={SignUp.setOpenSignUp}
-                />
+                        <UserDropdown
+                        isOpen={SignIn.openSignIn} setIsOpen={SignIn.setOpenSignIn}
+                        isUpOpen={SignUp.openSignUp} setIsUpOpen={SignUp.setOpenSignUp}
+                        />
+                    
+                
             </div>
         </div>
         
@@ -72,6 +76,9 @@ const MediumNav = () => {
 }
 
 const LargeNav = ({ SignIn, SignUp}) => {
+    const reduxState = useSelector(globalStore => globalStore.user.user)
+
+    const name = reduxState?.user?.fullName.split(' ')[0]
     function openSignInModal() {
         SignIn.setOpenSignIn(true)
       }
@@ -106,12 +113,26 @@ const LargeNav = ({ SignIn, SignUp}) => {
                     </div>
                 </div>
                 <div className=" flex items-center  gap-10">
-                    <button onClick={openSignInModal} className=" text-gray-500 text-xl hover:text-gray-800">
-                        Login
-                    </button>
-                    <button onClick={openSignUpModal} className=" text-gray-500 text-xl hover:text-gray-800">
-                        Signup
-                    </button>
+                    {reduxState?.user?.fullName ? (
+                        <>
+                            <button  className=" text-gray-600 text-xl hover:text-gray-800">
+                                {name}
+                            </button>
+                            <UserDropdown
+                            isOpen={SignIn.openSignIn} setIsOpen={SignIn.setOpenSignIn}
+                            isUpOpen={SignUp.openSignUp} setIsUpOpen={SignUp.setOpenSignUp}
+                            />
+                        </>
+                    ) : (
+                        <>
+                            <button onClick={openSignInModal} className=" text-gray-500 text-xl hover:text-gray-800">
+                                Login
+                            </button>
+                            <button onClick={openSignUpModal} className=" text-gray-500 text-xl hover:text-gray-800">
+                                Signup
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
         </>

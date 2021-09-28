@@ -111,7 +111,7 @@ const Overview = () => {
                     <MenuCollection
                       menuTitle="Menu"
                       
-                      images={menuImage}
+                      image={menuImage}
                     />
                 </div>
                 

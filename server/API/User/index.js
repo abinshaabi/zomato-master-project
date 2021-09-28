@@ -29,9 +29,9 @@ Router.get("/", passport.authenticate("jwt") , async (req, res) => {
         const getUser = await UserModel.findById(_id)
         */
 
-        const { email, fullname, phoneNumber, address } = req.session.passport.user._doc;
+        const { email, fullName, phoneNumber, address } = req.session.passport.user._doc;
 
-        return res.json({user: { email, fullname, phoneNumber, address }});
+        return res.json({user: { email, fullName, phoneNumber, address }});
         
     } catch (error) {
         return res.status(500).json({ error: error.message }) 
