@@ -12,7 +12,7 @@ const AuthReducer = (state = INITIAL_STATE,action) => {
                 
             }
             
-        case SIGN_UP
+        case SIGN_UP:
             return {
                 ...state,
                 
