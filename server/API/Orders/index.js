@@ -43,17 +43,16 @@ Params  _id
 Access  Public
 Method  POST
 */
-Router.post("/new/:_id", async (req, res) => {
+Router.post("/new", passport.authenticate("jwt"), async (req, res) => {
     try {
-        await ValidateUserId(req.params);
         await ValidateOrderDetails(req.body);
 
-        const { _id } = req.params
+        const { _id } = req.session.passport.user._doc
         const { orderDetails } = req.body
 
         const addNewOrder = await OrderModel.findOneAndUpdate(
             {user: _id},
-            {$push: orderDetails},
+            {$push: {orderDetails}},
             {new:true},
         )
         

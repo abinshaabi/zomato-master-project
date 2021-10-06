@@ -25,7 +25,7 @@ const OrderOnline = () => {
     const reduxState = useSelector(
         (globalStore) => globalStore.restaurant.selectedRestaurant.restaurant
     )
-
+console.log({reduxState});
     useEffect(() => {
         reduxState && 
            dispatch(getFoodList(reduxState.menu)).then(

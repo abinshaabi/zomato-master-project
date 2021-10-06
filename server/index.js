@@ -22,6 +22,7 @@ import Order from "./API/Orders"
 import Reviews from "./API/Reviews"
 import User from "./API/User"
 import Image from "./API/Image"
+import Payment from "./API/Payment"
 
 //database connection
 import ConnectDB from "./database/connection"
@@ -53,6 +54,7 @@ zomato.use("/order", Order)
 zomato.use("/reviews", Reviews)
 zomato.use("/user", User)
 zomato.use("/image", Image)
+zomato.use("/payment", Payment)
 
 
 

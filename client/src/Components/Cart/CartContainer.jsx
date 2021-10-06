@@ -5,11 +5,15 @@ import {IoCloseSharp} from 'react-icons/io5'
 import { getCart } from '../../Redux/Reducer/Cart/Cart.action'
 
 import FoodItem from './FoodItem'
+import { useHistory } from 'react-router'
 
 const CartSm = ({toggle}) => {
 
-      const reduxState = useSelector((globalStore) => globalStore.cart.cart)
+    const reduxState = useSelector((globalStore) => globalStore.cart.cart)
+    
+    const history = useHistory();
 
+    const continueToCheckout = () => history.push("/checkout/orders")
   return(<>
         <div className="p-2 md:hidden flex items-center justify-between" style={{boxShadow: " 0px -1px 2px #a9b2ae"}}>
         <div className="flex flex-col items-start font-semibold" >
@@ -23,7 +27,7 @@ const CartSm = ({toggle}) => {
           </h4>
         </div>
         <button
-          
+          onClick={continueToCheckout}
           className="flex items-center gap-1 bg-zomato-400 px-4 py-2 text-white rounded-lg"
         >
           Continue <IoMdArrowDropright />
@@ -35,6 +39,10 @@ const CartSm = ({toggle}) => {
 const CartLg = ({toggle}) => {
 
     const reduxState = useSelector((globalStore) => globalStore.cart.cart)
+    
+    const history = useHistory();
+
+    const continueToCheckout = () => history.push("/checkout/orders")
 
     return(<>
         <div className="p-2 hidden md:flex items-center justify-between container px-20 mx-auto">
@@ -53,7 +61,7 @@ const CartLg = ({toggle}) => {
                 
             </h4>
             <button
-                 
+               onClick={continueToCheckout}  
                 className="flex items-center text-lg h-10 font-light gap-1 bg-zomato-400 px-4 lg:px-6 py-2 text-white rounded-lg"
             >
                 Continue <IoMdArrowDropright />

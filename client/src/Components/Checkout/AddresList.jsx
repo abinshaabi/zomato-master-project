@@ -5,8 +5,8 @@ export default function AddressList(props) {
   const [selected, setSelected] = useState(props.address[0]);
 
   return (
-    <div className="w-full">
-      <div className="w-full max-w-md mx-auto">
+    <div className="w-full ">
+      <div className="w-full max-w-md mx-auto ">
         <RadioGroup value={selected} onChange={setSelected}>
           <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
           <div className="space-y-2">

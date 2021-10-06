@@ -1,9 +1,16 @@
 import React from 'react'
 import { BsShieldLockFill } from "react-icons/bs";
+import { useDispatch, useSelector } from 'react-redux';
 import FoodItem from '../Components/Cart/FoodItem';
 import AddressList from '../Components/Checkout/AddresList';
+import Razorpay from 'razorpay'
+import { createOrder } from '../Redux/Reducer/Order/order.action';
 
 const Checkout = () => {
+    const dispatch = useDispatch()
+    const reduxStateCart = useSelector((globalStore) => globalStore.cart.cart)
+    const reduxStateUser = useSelector((globalStore) => globalStore.user.user.user)
+
     const address = [
         {
           name: "Home",
@@ -18,6 +25,36 @@ const Checkout = () => {
           address: "India",
         },
       ];
+
+    
+    const payNow = async (e) => {
+      let options = {
+        key: "rzp_test_DDFlA7UaCcL00M",
+        amount:
+          reduxStateCart.reduce((acc, curVal) => acc + curVal.totalPrice, 0) *
+          100,
+        currency: "INR",
+        name: "Zomato Clone",
+        description: "Food Payment",
+        image:
+          "https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png",
+  
+        handler: () => {
+          alert("Payment Done");
+        },
+        prefill: {
+          name: reduxStateUser.fullName,
+          email: reduxStateUser.email,
+        },
+        theme: { color: "#e23744" },
+      };
+  
+      let razorPay = new window.Razorpay(options);
+      razorPay.open();
+    
+    }
+
+    
     return (<>
         <div className="my-3 flex flex-col gap-3 items-center">
             <h1 className="text-xl text-center md:text-2xl font-bold">Checkout</h1>
@@ -30,16 +67,18 @@ const Checkout = () => {
                     <small>GT World Mall, Magadi Road, Bangalore</small>
                 </div>
                 <div className="my-4 h-48 border scrollbar-none overflow-y-scroll px-4 flex flex-col gap-2 w-full md:w-3/5 ">
-                    <FoodItem />
-                    <FoodItem />
-                    <FoodItem />
+                  {
+                    reduxStateCart.map((food) => 
+                      <FoodItem {...food} key={food._id} />
+                    )
+                  }
                 </div>
                 <div className=" flex flex-col gap-3 w-full md:w-3/5 ">
                     <h4 className="text-xl font-semibold">Choose Address</h4>
                     <AddressList address={address} />
                 </div>
                 </div>
-                <button className="flex items-center gap-2 justify-center my-4 md:my-8 w-full px-4 md:w-4/5 px-0 h-14 text-white font-medium text-lg bg-zomato-400 rounded-lg">
+                <button onClick={payNow} className="flex items-center gap-2 justify-center my-4 md:my-8 w-full px-4 md:w-4/5 px-0 h-14 text-white font-medium text-lg bg-zomato-400 rounded-lg">
                 Pay Securely <BsShieldLockFill />
                 </button>
             </div>
