@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BiPlus } from 'react-icons/bi'
 import ReactStars from 'react-rating-stars-component'
 import { useDispatch } from 'react-redux'
+import { addCart } from '../../../Redux/Reducer/Cart/Cart.action'
 import { getFood } from '../../../Redux/Reducer/Food/Food.action'
 import { getImage } from '../../../Redux/Reducer/Image/Image.action'
 
@@ -20,6 +21,11 @@ const FoodItem = (props) => {
             }
         )
     }, [])
+
+    const addFoodToCart = () => {
+        dispatch(addCart({ ...food, quantity: 1, totalPrice: food.price }))
+        setFood((prev) => ({ ...prev, isAddedToCart: true }))
+    }
     return ( 
         <>
             {food?.name && (
@@ -37,7 +43,16 @@ const FoodItem = (props) => {
                             <h3 className="md:text-xl font-semibold">
                                 {food?.name}
                             </h3>
-                            <button className="md:hidden flex items-center gap-2 text-zomato-400 bg-zomato-50 border border-zomato-400 px-2 py-1 md:px-4 md:py-2 rounded-lg"><BiPlus /> Add</button>
+                            <button onClick={addFoodToCart} disabled={food.isAddedToCart} className="md:hidden flex items-center gap-2 text-zomato-400 bg-zomato-50 border border-zomato-400 px-2 py-1 md:px-4 md:py-2 rounded-lg"> 
+                                {food.isAddedToCart ? (
+                                    "Added"
+                                    ) : (
+                                    <>
+                                        <BiPlus /> Add
+                                    </>
+                                    )
+                                }
+                            </button>
 
                         </div>
                         <ReactStars count={5}  value={food?.rating || 0} edit={false} />
@@ -47,7 +62,16 @@ const FoodItem = (props) => {
                         </p>
                     </div>
                     <div className="hidden md:block w-3/12">
-                        <button className="flex items-center gap-2 text-zomato-400 bg-zomato-50 border border-zomato-400 px-4 py-1 lg:py-2 rounded-lg"><BiPlus /> Add</button>
+                        <button onClick={addFoodToCart} disabled={food.isAddedToCart} className="flex items-center gap-2 text-zomato-400 bg-zomato-50 border border-zomato-400 px-4 py-1 lg:py-2 rounded-lg">
+                            {food.isAddedToCart ? (
+                                "Added"
+                                ) : (
+                                <>
+                                    <BiPlus /> Add
+                                </>
+                                )
+                            }
+                        </button>
 
                     </div>
                 </div>                

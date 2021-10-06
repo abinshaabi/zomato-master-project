@@ -6,10 +6,10 @@ const FoodItem = (props) => {
   return (
     <>
       <div className="flex items-center scrollbar-none justify-between">
-        <h5 className="text-lg ">Cheese N Eat</h5>
+        <h5 className="text-lg ">{props.name}</h5>
         <div className="flex items-center gap-3">
           <div className="flex flex-col gap-1 items-end">
-            <small>₹ 250</small>
+            <small>{props.price}</small>
             <div className="px-1 bg-zomato-400 text-white rounded flex items-center gap-1">
               <button
                 
@@ -17,7 +17,7 @@ const FoodItem = (props) => {
               >
                 -
               </button>
-              <small>12</small>
+              <small>{props.quantity}</small>
               <button
                 
                 className="p-1 bg-zomato-400 text-white rounded"

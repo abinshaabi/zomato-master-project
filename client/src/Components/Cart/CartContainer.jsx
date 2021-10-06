@@ -1,18 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {IoMdArrowDropup, IoMdArrowDropright} from 'react-icons/io'
 import {IoCloseSharp} from 'react-icons/io5'
+import { getCart } from '../../Redux/Reducer/Cart/Cart.action'
 
 import FoodItem from './FoodItem'
 
 const CartSm = ({toggle}) => {
-    return(<>
+
+      const reduxState = useSelector((globalStore) => globalStore.cart.cart)
+
+  return(<>
         <div className="p-2 md:hidden flex items-center justify-between" style={{boxShadow: " 0px -1px 2px #a9b2ae"}}>
         <div className="flex flex-col items-start font-semibold" >
           <small className="flex items-center gap-1" onClick={toggle} >
-            1 ITEM <IoMdArrowDropup />
+            {reduxState.length} ITEM <IoMdArrowDropup />
           </small>
           <h4>
-            ₹250
+            ₹
+            {reduxState.reduce((acc, curVal) => acc + curVal.totalPrice, 0)}
             <sub>(plus tax)</sub>
           </h4>
         </div>
@@ -27,6 +33,9 @@ const CartSm = ({toggle}) => {
 }
 
 const CartLg = ({toggle}) => {
+
+    const reduxState = useSelector((globalStore) => globalStore.cart.cart)
+
     return(<>
         <div className="p-2 hidden md:flex items-center justify-between container px-20 mx-auto">
             <div className="flex gap-5 text-xl items-start">
@@ -36,11 +45,11 @@ const CartLg = ({toggle}) => {
             >
                 <IoMdArrowDropup />
             </span>
-            <h4>Your Order (1)</h4>
+            <h4>Your Order ({reduxState.length})</h4>
             </div>
             <div className="flex items-center md:gap-3 lg:gap-10">
             <h4 className="text-xl">
-                Subtotal:₹ 250.00
+                Subtotal:₹ {reduxState.reduce((acc, curVal) => acc + curVal.totalPrice, 0)}
                 
             </h4>
             <button
@@ -56,35 +65,47 @@ const CartLg = ({toggle}) => {
 
 const CartContainer = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [cartData, setCartData] = useState([])
+    const dispatch = useDispatch()
+    const reduxState = useSelector((globalStore) => globalStore.cart.cart)
+
+    useEffect(() => {
+      dispatch(getCart()).then((data) => setCartData(data.payload) )
+    }, [])
 
     const toggleCart = () => setIsOpen((prev) => !prev)
     const closeCart = () => setIsOpen(false)
 
     return (<>
         {isOpen && (
-            <div className="fixed w-full overflow-y-scroll h-48 bg-white z-10 p-2 bottom-14  px-3">
-              <div className="flex items-center justify-between md:px-20">
+            <div className="fixed w-full  h-60 lg:h-72 bg-gray-50 z-50 p-2 bottom-14  px-5">
+              <div className=" z-10 flex items-center justify-between md:px-20">
                 <h3 className="text-xl md:text-2xl font-semibold">Your Orders</h3>
                 <IoCloseSharp onClick={closeCart} className="md:w-6 md:h-6" />
               </div>
+              
               <hr className="my-2" />
 
-              <div className="flex flex-col gap-2 md:px-20">
-                
-                  <FoodItem  />
-                  <FoodItem  />
-                  <FoodItem  />
-                  <FoodItem  />
+              <div className="flex flex-col overflow-y-scroll h-44 lg:h-56 gap-2 md:px-20">
+                {
+                  reduxState.map((food) => 
+                    <FoodItem name={food.name} price={food.price} quantity={food.quantity} />
+                  )
+                }
+                  
+                  
                 
               </div>
             </div>
           )}
         
-        <div className="fixed w-full bg-white z-10  bottom-0">
-            <CartSm toggle={toggleCart}/>
-            <CartLg toggle={toggleCart}/>
-            
-        </div>
+        {reduxState.length && (
+          <div className="fixed w-full bg-white z-10  bottom-0">
+              <CartSm toggle={toggleCart}/>
+              <CartLg toggle={toggleCart}/>
+              
+          </div>
+        )}
     </>)
 }
 

@@ -17,6 +17,7 @@ import CartContainer from '../Components/Cart/CartContainer'
 //redux actions
 import { getSpecificRestaurant  } from '../Redux/Reducer/restaurant/restaurant.action'
 import { getImage } from '../Redux/Reducer/Image/Image.action'
+import { getCart } from '../Redux/Reducer/Cart/Cart.action'
 
 
 const RestaurantLayout = (props) => {
@@ -38,7 +39,10 @@ const RestaurantLayout = (props) => {
             setRestaurant((prev) => ({ ...prev, ...data.payload.image }))
           );
         });
+
+        dispatch(getCart())
     }, []);
+    console.log("222", {restaurant});
 
     const images = [
         "https://b.zmtcdn.com/data/pictures/chains/2/50382/6fa52a1c7dad34faa24f1bae4e7159de.jpg?output-format=webp&fit=around|771.75:416.25&crop=771.75:416.25;*,*",

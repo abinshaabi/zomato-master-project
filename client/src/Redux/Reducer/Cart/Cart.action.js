@@ -6,8 +6,9 @@ export const getCart = () => async (dispatch) => {
     let cartData = { cart: [] };
 
     if (localStorage.zomatoCart) {
-      cartData.cart = JSON.parse(localStorage.getItem("zomatoCart"));
-    }
+      const {cart}= JSON.parse(localStorage.getItem("zomatoCart"));
+      cartData.cart = cart
+   }
 
     return dispatch({ type: GET_CART, payload: cartData.cart });
   } catch (error) {
@@ -20,7 +21,8 @@ export const addCart = (newFood) => async (dispatch) => {
     let cartData = { cart: [] };
 
     if (localStorage.zomatoCart) {
-      cartData.cart = JSON.parse(localStorage.getItem("zomatoCart"));
+       const {cart}= JSON.parse(localStorage.getItem("zomatoCart"));
+       cartData.cart = cart
     }
 
     cartData.cart.push(newFood);
@@ -38,8 +40,9 @@ export const DeleteCart = (foodID) => async (dispatch) => {
     let cartData = { cart: [] };
 
     if (localStorage.zomatoCart) {
-      cartData.cart = JSON.parse(localStorage.getItem("zomatoCart"));
-    }
+      const {cart}= JSON.parse(localStorage.getItem("zomatoCart"));
+      cartData.cart = cart
+   }
 
     if (!cartData.cart.length) {
       return dispatch({ type: "ERROR", payload: "Cart is Empty" });
@@ -60,11 +63,12 @@ export const IncQty = (foodID) => async (dispatch) => {
     let cartData = { cart: [] };
 
     if (localStorage.zomatoCart) {
-      cartData.cart = JSON.parse(localStorage.getItem("zomatoCart"));
-    }
+      const {cart}= JSON.parse(localStorage.getItem("zomatoCart"));
+      cartData.cart = cart
+   }
 
     cartData.cart = cartData.cart.map((food) =>
-      food._id === foodID ? { ...food, quantity: food.quantity + 1 } : food
+      food._id === foodID ? { ...food, quantity: food.quantity + 1, totalPrice: food.price * (food.quantity + 1) } : food
     );
 
     localStorage.setItem("zomatoCart", JSON.stringify({ cart: cartData.cart }));
@@ -80,11 +84,12 @@ export const DecQty = (foodID) => async (dispatch) => {
     let cartData = { cart: [] };
 
     if (localStorage.zomatoCart) {
-      cartData.cart = JSON.parse(localStorage.getItem("zomatoCart"));
-    }
+      const {cart}= JSON.parse(localStorage.getItem("zomatoCart"));
+      cartData.cart = cart
+   }
 
     cartData.cart = cartData.cart.map((food) =>
-      food._id === foodID ? { ...food, quantity: food.quantity - 1 } : food
+      food._id === foodID ? { ...food, quantity: food.quantity - 1, totalPrice: food.price * (food.quantity - 1) } : food
     );
 
     localStorage.setItem("zomatoCart", JSON.stringify({ cart: cartData.cart }));
