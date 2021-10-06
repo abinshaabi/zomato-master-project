@@ -77,7 +77,10 @@ const CartContainer = () => {
     const closeCart = () => setIsOpen(false)
 
     return (<>
-        {isOpen && (
+        
+        {reduxState.length && (
+          <>
+          {isOpen && (
             <div className="fixed w-full  h-60 lg:h-72 bg-gray-50 z-50 p-2 bottom-14  px-5">
               <div className=" z-10 flex items-center justify-between md:px-20">
                 <h3 className="text-xl md:text-2xl font-semibold">Your Orders</h3>
@@ -89,7 +92,7 @@ const CartContainer = () => {
               <div className="flex flex-col overflow-y-scroll h-44 lg:h-56 gap-2 md:px-20">
                 {
                   reduxState.map((food) => 
-                    <FoodItem name={food.name} price={food.price} quantity={food.quantity} />
+                    <FoodItem {...food} key={food._id} />
                   )
                 }
                   
@@ -98,13 +101,14 @@ const CartContainer = () => {
               </div>
             </div>
           )}
+          
         
-        {reduxState.length && (
           <div className="fixed w-full bg-white z-10  bottom-0">
               <CartSm toggle={toggleCart}/>
               <CartLg toggle={toggleCart}/>
               
           </div>
+          </>
         )}
     </>)
 }
