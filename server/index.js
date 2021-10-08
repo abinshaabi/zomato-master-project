@@ -23,6 +23,7 @@ import Reviews from "./API/Reviews"
 import User from "./API/User"
 import Image from "./API/Image"
 import Payment from "./API/Payment"
+import MailService from "./API/Mail"
 
 //database connection
 import ConnectDB from "./database/connection"
@@ -55,12 +56,12 @@ zomato.use("/reviews", Reviews)
 zomato.use("/user", User)
 zomato.use("/image", Image)
 zomato.use("/payment", Payment)
+zomato.use("/mail", MailService)
 
 
+zomato.get("/", (req,res) => res.json({ message : "setup11 success"}))
 
-zomato.get("/", (req,res) => res.json({ message : "setup success"}))
-
-zomato.listen(3000, () => 
+zomato.listen(4000, () => 
         ConnectDB()
             .then(() => console.log("Server is running"))
             .catch((error) => console.log("Server is running, but database connection failed")) 
