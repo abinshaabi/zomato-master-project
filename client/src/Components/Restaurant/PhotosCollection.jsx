@@ -36,7 +36,7 @@ const PhotosCollection = (props) => {
                         <img
                             src={image}
                             alt="menu"
-                            className="w-full  h-full transform transition duration-400 rounded-lg hover:scale-105"
+                            className="w-full object-cover  h-full transform transition duration-400 rounded-lg hover:scale-105"
                             onClick={ () => openImageViewer(index) }
                         />
                     </div>

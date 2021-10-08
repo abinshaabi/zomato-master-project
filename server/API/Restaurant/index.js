@@ -78,4 +78,21 @@ Router.get("/search", async (req, res) => {
 })
 
 
+//pavans
+// @Route   POST /restaurants/new
+// @des     add new restaurant
+// @access  PRIVATE
+Router.post("/new", passport.authenticate("jwt"), async (req, res) => {
+    try {
+      const newRestaurant = await RestaurantModel.create(req.body.restaurantData);
+      return res.json({ restaurants: newRestaurant });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  });
+  
+
+
+
+
 export default Router;

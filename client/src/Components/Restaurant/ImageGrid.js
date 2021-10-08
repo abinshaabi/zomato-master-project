@@ -19,20 +19,20 @@ const ImageGrid = (props) => {
                     </div>
                     <div className="w-5/12 h-full flex gap-1">
                         <div className="w-1/2 h-full flex flex-col gap-1">
-                            <div className="overflow-hidden w-full h-full ">
+                            <div className="overflow-hidden w-full h-1/2 ">
                                 <img src={props.images.length >=1 && props.images[1].location}
                                 alt="restaurant image"
-                                className="w-full h-2/4 object-cover  transform transition duration-700 hover:scale-110 " />
+                                className="w-full h-full object-cover  transform transition duration-700 hover:scale-110 " />
                             </div>
-                            <div className="overflow-hidden w-full h-full ">
-                                <img src={props.images.length >=2 && props.images[2].location}
+                            <div className="overflow-hidden w-full h-1/2 ">
+                                <img src={props.images.length >=2 && props.images[2]?.location}
                                 alt="restaurant image"
-                                className="w-full h-2/4 object-cover  transform transition duration-700 hover:scale-110 " />
+                                className="w-full h-full object-cover  transform transition duration-700 hover:scale-110 " />
                             </div>
                         </div>
                         <div className="w-1/2 h-full flex flex-col gap-1">
                             <div className="relative w-full h-1/2">
-                                <img src={props.images.length >=3 && props.images[3].location}
+                                <img src={props.images.length >=3 && props.images[3]?.location}
                                 alt="restaurant image"
                                 className="w-full h-full absolute z-5 object-cover " />
                                 <div className="absolute z-10 inset-0 bg-opacity-40 w-full h-full bg-black "/>

@@ -4,8 +4,8 @@ export default async () => {
     return Mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
+      //useCreateIndex: true,
+      //useFindAndModify: false,
     });
   };
   
