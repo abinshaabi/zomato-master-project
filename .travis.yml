@@ -21,3 +21,16 @@ after_success:
   - docker push abinsha/zomato-shapeai-client
   - docker push abinsha/zomato-shapeai-server
   - docker push abinsha/zomato-shapeai-nginx
+
+deploy:
+  # deploy to WS EBS (beanstalk)
+  provider: elasticbeanstalk
+  region: ap-south-1
+  app: Zomato
+  env: Zomato-env 
+  bucket_name: elasticbeanstalk-ap-south-1-996686151989
+  bucket_path: zomato/
+  on:
+    branch: master
+  acces_key_id: $AWS_KEY
+  secret_access_key: $AWS_SECRET
